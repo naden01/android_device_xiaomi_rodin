@@ -103,6 +103,7 @@ ro.vendor.mtk_video_hevc_enc_support=1
 vendor.camera.mdp.cz.enable=1
 vendor.camera.mdp.dre.enable=1
 vendor.mtk.camera.app.fd.video=1
+vendor.camera.aux.packagelist=org.lineageos.aperture
 ro.vendor.camera3.zsl.default=260
 
 # ConsumerIR
