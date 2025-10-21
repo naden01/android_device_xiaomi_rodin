@@ -16,7 +16,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_ven
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # ViperFX
-$(call inherit-product, vendor/xiaomi/rodin/viperfx/viperfx.mk)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 
 # Inherit common MediaTek IMS
 $(call inherit-product, vendor/mediatek/ims/ims.mk)
