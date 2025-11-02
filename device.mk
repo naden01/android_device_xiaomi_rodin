@@ -18,6 +18,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 # Keys
 -include vendor/private/keys/keys.mk
 
+# ViperFX
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+
 # Inherit common MediaTek IMS
 $(call inherit-product, vendor/mediatek/ims/ims.mk)
 
