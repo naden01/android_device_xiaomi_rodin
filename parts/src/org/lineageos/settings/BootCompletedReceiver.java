@@ -41,7 +41,6 @@ import org.lineageos.settings.refreshrate.RefreshUtils;
 import org.lineageos.settings.touch.DoubleTapService;
 import org.lineageos.settings.touch.SoFodTouchService;
 import org.lineageos.settings.touchsampling.TouchSamplingService;
-import org.lineageos.settings.touchsampling.TouchSamplingTileService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
@@ -91,10 +90,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         // Start Touchfeature service   
         context.startServiceAsUser(new Intent(context, DoubleTapService.class), UserHandle.CURRENT);
         context.startServiceAsUser(new Intent(context, SoFodTouchService.class), UserHandle.CURRENT);
-
-        // Touch Sampling Tile Service
-        Intent touchSamplingTileServiceIntent = new Intent(context, TouchSamplingTileService.class);
-        context.startServiceAsUser(touchSamplingTileServiceIntent, UserHandle.CURRENT);
     }
     private void overrideHdrTypes(Context context) {
         try {
