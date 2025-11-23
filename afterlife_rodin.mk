@@ -11,6 +11,28 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common Lineage stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
+# AfterLife flags
+AFTERLIFE_MAINTAINER := Nazephyrus
+
+# Bootanimation
+TARGET_BOOT_ANIMATION_RES := 1080
+
+# FOD
+TARGET_UDFPS_ANIMATIONS := true
+
+# Offline Charging
+USE_PIXEL_CHARGING := true
+
+# disable/enable blur support, default is false
+TARGET_SUPPORTS_BLUR := true
+
+# Face Unlock
+TARGET_FACE_UNLOCK_SUPPORTED := true
+
+# Gapps
+AFTERLIFE_GAPPS := true
+GAPPS_CORE := true
+
 # Inherit from rodin device
 $(call inherit-product, device/xiaomi/rodin/device.mk)
 
