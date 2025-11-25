@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/afterlife_rodin.mk
+    $(LOCAL_DIR)/superior_rodin.mk
