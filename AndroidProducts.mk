@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/superior_rodin.mk
+    $(LOCAL_DIR)/lmodroid_rodin.mk
