@@ -9,7 +9,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit some common lmodroid stuff.
-$(call inherit-product, vendor/lmodroid/config/common_full_phone.mk)
+$(call inherit-product, vendor/2by2/config/common_full_phone.mk)
 
 # Inherit from rodin device
 $(call inherit-product, device/xiaomi/rodin/device.mk)
@@ -31,3 +31,5 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     DeviceName=$(PRODUCT_SYSTEM_DEVICE) \
     DeviceProduct=$(PRODUCT_SYSTEM_NAME)
 
+# 2by2 Flags
+CUSTOM_PROCESSOR_INFO := Mediatek Dimensity 8400 Ultra
