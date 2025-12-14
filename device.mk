@@ -15,9 +15,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/launch_with_ven
 # Project ID Quota
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# Keys
--include vendor/private/keys/keys.mk
-
 # Inherit common MediaTek IMS
 $(call inherit-product, vendor/mediatek/ims/ims.mk)
 
@@ -52,7 +49,9 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/interfaces \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/mediatek \
+    hardware/mediatek/libaedv \
     hardware/mediatek/libmtkperf_client \
+    hardware/mediatek/wlan/wifi_hal \
     hardware/xiaomi
 
 # Linker config
@@ -93,6 +92,8 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_OPTIONAL_vendor=true
 
 # Audio
+$(call soong_config_set,android_hardware_audio,skip_speaker_layout_channel_mask_field,true)
+
 TARGET_EXCLUDES_AUDIOFX := true
 PRODUCT_PACKAGES += \
     android.hardware.audio.service \
@@ -156,10 +157,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
-# Camera Extensions permissions
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/camerax-vendor-extensions.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/camerax-vendor-extensions.xml
-
 # ConsumerIR
 PRODUCT_PACKAGES += \
     android.hardware.ir-service.example
@@ -191,7 +188,6 @@ PRODUCT_PACKAGES += \
 $(call soong_config_set,XIAOMI_BIOMETRICS_FINGERPRINT,USE_NEW_IMPL,true)
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint-service.xiaomi \
-    vendor.xiaomi.hardware.fx.tunnel@1.0.vendor \
     libudfpshandler
 
 PRODUCT_PACKAGES += \
@@ -251,7 +247,14 @@ PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,$(DEVICE_PATH)/configs/media,$(TARGET_COPY_OUT_VENDOR)/etc)
 
 # MiuiCamera
-$(call inherit-product-if-exists, device/xiaomi/rodin-miuicamera/device.mk)
+ifeq ($(TARGET_SHIPS_MIUICAMERA), true)
+    $(call inherit-product, device/xiaomi/rodin-miuicamera/device.mk)
+    PRODUCT_VENDOR_PROPERTIES += \
+        vendor.camera.aux.packagelist=com.android.camera
+else
+    PRODUCT_VENDOR_PROPERTIES += \
+        vendor.camera.aux.packagelist=org.lineageos.aperture
+endif
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -273,6 +276,7 @@ PRODUCT_COPY_FILES += \
 # Overlays
 PRODUCT_PACKAGES += \
     FrameworksResOverlayRodin \
+    NfcOverlayRodin \
     SettingsResOverlayRodin \
     SystemUIOverlayRodin \
     TetheringConfigOverlay \
@@ -283,9 +287,10 @@ PRODUCT_PACKAGES += \
     XiaomiParts
 
 # Power
+$(call soong_config_set,power_libperfmgr,mode_extension_lib, //$(DEVICE_PATH):libperfmgr-ext-xiaomi)
+
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.lineage-libperfmgr \
-    vendor.mediatek.hardware.mtkpower@1.2-service.stub
+    android.hardware.power-service.lineage-libperfmgr
 
 PRODUCT_PACKAGES += \
     init.mt6899.power.rc
@@ -336,7 +341,8 @@ PRODUCT_PACKAGES += \
     thermal_symlinks
 
 PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+    $(DEVICE_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json \
+    $(DEVICE_PATH)/configs/thermal-per-normal.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-per-normal.conf
 
 # USB
 PRODUCT_PACKAGES += \
@@ -349,13 +355,13 @@ PRODUCT_COPY_FILES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    vendor.qti.hardware.vibrator.service.rodin
-
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+    vibratorfeature-wrapper
 
 # WiFi
+$(call soong_config_set,wpa_supplicant_8,board_wlan_mediatek_stability,true)
+
 PRODUCT_PACKAGES += \
+    android.hardware.wifi-service \
     hostapd \
     wpa_supplicant
 

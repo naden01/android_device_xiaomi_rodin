@@ -342,10 +342,23 @@
       "HoldFd": true
     },
     {
+      "Name": "UclampFGMin",
+      "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
+      "Values": [
+        "0",
+        "15",
+        "30"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "UclampTAMin",
       "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
       "Values": [
         "0",
+        "30",
+        "40",
         "100"
       ],
       "DefaultIndex": 0,
@@ -437,6 +450,18 @@
       "Value": "1300000"
     },
     {
+      "PowerHint": "INTERACTION",
+      "Node": "UclampFGMin",
+      "Duration": 58,
+      "Value": "15"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "UclampTAMin",
+      "Duration": 58,
+      "Value": "40"
+    },
+    {
       "PowerHint": "LAUNCH",
       "Node": "CPUMidClusterMinFreq",
       "Duration": 2000,
@@ -459,13 +484,13 @@
       "Node": "UclampTAMin",
       "Duration": 2000,
       "Value": "100"
-    }, 
+    },
     {
       "PowerHint": "FIXED_PERFORMANCE",
       "Node": "GpuPwrLevel",
       "Duration": 0,
       "Value": "0"
-    },   
+    },
     {
       "PowerHint": "FIXED_PERFORMANCE",
       "Node": "CPUBigClusterMaxFreq",
@@ -521,6 +546,12 @@
       "Value": "101"
     },
     {
+      "PowerHint": "LAUNCH",
+      "Node": "GpuPwrLevel",
+      "Duration": 0,
+      "Value": "6"
+    },
+    {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CAMUClampBoost",
       "Duration": 1000,
@@ -549,6 +580,24 @@
       "Node": "CPUBigClusterMinFreq",
       "Duration": 0,
       "Value": "9999999"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "CPULittleClusterMinFreq",
+      "Duration": 0,
+      "Value": "9999999"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampFGMin",
+      "Duration": 0,
+      "Value": "30"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampTAMin",
+      "Duration": 0,
+      "Value": "30"
     },
     {
       "PowerHint": "ML_ACC",

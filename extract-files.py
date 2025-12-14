@@ -23,6 +23,7 @@ from extract_utils.fixups_lib import (
 namespace_imports = [
     'device/xiaomi/rodin',
     'hardware/mediatek',
+    'hardware/mediatek/libaedv',
     'hardware/mediatek/libmtkperf_client',
     'hardware/lineage/compat',
     'hardware/xiaomi',
@@ -39,6 +40,7 @@ def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
 lib_fixups: lib_fixups_user_type = {
     **lib_fixups,
     ('vendor.xiaomi.hw.touchfeature-V1-ndk'): lib_fixup_vendor_suffix,
+    ('vendor.xiaomi.hardware.fingerprintextension-V1-ndk'): lib_fixup_vendor_suffix,
 }
 
 blob_fixups: blob_fixups_user_type = {
@@ -50,7 +52,6 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/bin/mnld',
         'vendor/lib64/mt6899/libpqconfig.so',
         'vendor/lib64/mt6899/libaalservice.so',
-        'odm/bin/hw/vendor.xiaomi.hw.touchfeature-service',
         'odm/bin/hw/vendor.xiaomi.sensor.citsensorservice.aidl',
         'odm/lib64/hw/displayfeature.default.so',
         'odm/lib64/libpaperMode.so',
@@ -76,8 +77,6 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/libcodec2_vpp_AIMEMC_plugin.so',
         'vendor/lib64/libcodec2_vpp_AISR_plugin.so',
         'vendor/lib64/libgpud.so',
-        'vendor/lib64/mt6899/libmtkcam_grallocutils.so',
-        'vendor/lib64/libmtkcam_grallocutils_aidlv2helper.so',
         'vendor/lib64/egl/mt6899/libGLES_mali.so',
         'vendor/lib64/hw/mt6899/android.hardware.graphics.allocator-V2-mediatek.so',
         'vendor/lib64/hw/mt6899/mapper.mediatek.so',
@@ -86,7 +85,7 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V4-ndk.so',
         'vendor/lib64/vendor.mediatek.hardware.pq_aidl-V7-ndk.so',
     ): blob_fixup()
-        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V6-ndk.so'),
+        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
     (
         'vendor/lib64/vendor.xiaomi.hardware.camera.injection-client.so',
         'vendor/lib64/vendor.xiaomi.hardware.camera.injection-V1-ndk.so'
@@ -101,11 +100,9 @@ blob_fixups: blob_fixups_user_type = {
         'vendor/lib64/vendor.xiaomi.hardware.camera.injection-service.so'
     ): blob_fixup()
         .replace_needed('android.hardware.camera.device-V1-ndk.so', 'android.hardware.camera.device-V2-ndk.so'),
-    ('vendor/lib64/libmicamera_hal_core.so',
-     'vendor/lib64/libcameraopt.so',
+    ('vendor/lib64/libcameraopt.so',
      'vendor/lib64/mt6899/libcam.hal3a.so',
      'vendor/lib64/mt6899/libcam.hal3a.ctrl.so',
-     'vendor/lib64/libmialgoengine.so',
      'vendor/lib64/mt6899/libmtkcam_taskmgr.so',
      'vendor/lib64/hw/hwcomposer.mtk_common.so'): blob_fixup()
         .add_needed('libprocessgroup_shim.so'),
@@ -142,8 +139,21 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed("libstagefright_foundation.so", "libstagefright_foundation-v33.so"),
     'vendor/bin/hw/mtkfusionrild': blob_fixup()
         .add_needed('libutils-v32.so'),
-    "vendor/etc/init/android.hardware.wifi-service-lazy-mediatek.rc": blob_fixup()
-        .regex_replace("lazy", "lazy-mediatek"),
+    'vendor/etc/init/vendor.xiaomi.hardware.vibratorfeature.service.rc': blob_fixup()
+        .regex_replace('odm', 'vendor'),
+    'vendor/lib64/libmicamera_hal_core.so': blob_fixup()
+        .add_needed('libprocessgroup_shim.so')
+        .replace_needed('libui.so', 'libui-v34.so'),
+    (
+        'vendor/lib64/mt6899/libmtkcam_grallocutils.so',
+        'vendor/lib64/libmtkcam_grallocutils_aidlv2helper.so',
+    ): blob_fixup()
+        .replace_needed('libui.so', 'libui-v34.so')
+        .replace_needed('android.hardware.graphics.common-V5-ndk.so', 'android.hardware.graphics.common-V7-ndk.so'),
+    "odm/bin/hw/vendor.xiaomi.hw.touchfeature-service": blob_fixup()
+        .replace_needed('android.hardware.sensors-V2-ndk.so', 'android.hardware.sensors-V3-ndk.so')
+        .replace_needed('vendor.xiaomi.hw.touchfeature-V1-ndk.so', 'vendor.xiaomi.hw.touchfeature-V1-ndk-prebuilt.so'),
+    
 }  # fmt: skip
 
 module = ExtractUtilsModule(

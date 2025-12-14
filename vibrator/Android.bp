@@ -1,26 +1,12 @@
 cc_binary {
-    name: "vendor.qti.hardware.vibrator.service.rodin",
-    vendor: true,
+    name: "vibratorfeature-wrapper",
+    init_rc: ["vibratorfeature-wrapper.rc"],
+    vintf_fragments: ["android.hardware.vibrator.xml"],
     relative_install_path: "hw",
-    init_rc: ["vendor.qti.hardware.vibrator.service.rodin.rc"],
-    vintf_fragments: [
-        "vendor.qti.hardware.vibrator.service.rodin.xml",
-    ],
-    cflags: [
-        "-Wall",
-        "-Werror",
-    ],
-    srcs: [
-        "service.cpp",
-        "Vibrator.cpp",
-    ],
+    device_specific: true,
     shared_libs: [
-        "libcutils",
-        "libutils",
         "libbase",
         "libbinder_ndk",
-        "liblog",
-        "libqtivibratoreffect.rodin",
-        "android.hardware.vibrator-V1-ndk",
     ],
+    srcs: ["main.cpp"],
 }

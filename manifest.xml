@@ -16,7 +16,7 @@
     </hal>
     <hal format="hidl">
         <name>android.hardware.graphics.mapper</name>
-        <transport arch="32+64">passthrough</transport>
+        <transport arch="64">passthrough</transport>
         <fqname>@4.0::IMapper/default</fqname>
     </hal>
     <hal format="aidl">
@@ -30,12 +30,6 @@
     <hal format="aidl">
         <name>vendor.mediatek.hardware.nvram</name>
         <fqname>INvram/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.mediatek.hardware.mtkpower</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::IMtkPerf/default</fqname>
-        <fqname>@1.2::IMtkPower/default</fqname>
     </hal>
     <hal format="aidl">
         <name>android.hardware.radio.config</name>
@@ -150,11 +144,6 @@
         <name>vendor.xiaomi.hardware.fingerprintextension</name>
         <version>1</version>
         <fqname>IXiaomiFingerprint/default</fqname>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.xiaomi.hardware.fx.tunnel</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::IMiFxTunnel/default</fqname>
     </hal>
     <hal format="aidl">
         <name>vendor.xiaomi.hardware.fx.tunnel</name>

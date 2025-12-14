@@ -4,6 +4,13 @@ on init
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/top-app/cpus 0-7
 
+    # fs
+    write /sys/block/mmcblk0/queue/nr_requests 64
+    write /sys/block/sda/queue/nr_requests 64
+    write /sys/block/sdb/queue/nr_requests 64
+    write /sys/block/sdc/queue/nr_requests 64
+    write /sys/block/mmcblk0/queue/nr_requests 64
+
     # Disable printk logging
     write /proc/sys/kernel/printk_devkmsg off
 
@@ -62,6 +69,9 @@ on property:sys.boot_completed=1
     write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor "schedutil"
     write /sys/devices/system/cpu/cpufreq/policy4/scaling_governor "schedutil"
     write /sys/devices/system/cpu/cpufreq/policy7/scaling_governor "schedutil"
+
+    # Adjust watermark level
+    write /proc/sys/vm/watermark_scale_factor 200
 
     chmod 0664 /sys/class/Charging_Adapter/pd_adapter/usbpd_verifed
     chmod 0664 /sys/class/Charging_Adapter/pd_adapter/request_vdm_cmd

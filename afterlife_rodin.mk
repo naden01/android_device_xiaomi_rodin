@@ -11,6 +11,9 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common afterlife stuff.
 $(call inherit-product, vendor/afterlife/config/common_full_phone.mk)
 
+# Inherit from rodin device
+$(call inherit-product, device/xiaomi/rodin/device.mk)
+
 # AfterLife flags
 AFTERLIFE_MAINTAINER := Nazephyrus
 
@@ -33,11 +36,8 @@ TARGET_FACE_UNLOCK_SUPPORTED := true
 AFTERLIFE_GAPPS := true
 GAPPS_CORE := true
 
-# Inherit from rodin device
-$(call inherit-product, device/xiaomi/rodin/device.mk)
-
 PRODUCT_DEVICE := rodin
-PRODUCT_NAME := lineage_rodin
+PRODUCT_NAME := afterlife_rodin
 PRODUCT_BRAND := POCO
 PRODUCT_MODEL := 2412DPC0AG
 PRODUCT_MANUFACTURER := xiaomi
