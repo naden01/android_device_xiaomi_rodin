@@ -260,8 +260,6 @@ else
         vendor.camera.aux.packagelist=org.lineageos.aperture
 endif
 
-TARGET_SHIPS_MIUICAMERA = true
-
 # NFC
 PRODUCT_PACKAGES += \
     android.hardware.nfc-service.nxp \
