@@ -5,8 +5,6 @@ audio.deep_buffer.media=true
 audio.offload.video=true
 audio.offload.min.duration.secs=30
 persist.vendor.audio.usb.offload=true
-persist.vendor.audio.fpsop.game.effect.speaker=false
-persist.vendor.audio.fpsop.game.effect.switch=false
 persist.vendor.speech.usb.offload=true
 ro.audio.monitorRotation=true
 ro.audio.usb.period_us=16000
@@ -24,6 +22,14 @@ ro.vendor.mtk_hifiaudio_support=1
 vendor.audio.spkcal.copy.inhal=true
 vendor.audio.usb.super_hifi=true
 vendor.audio.usb.iems.period_us=5000
+persist.vendor.audiohal.aurisys.pcm_dump_on=0
+persist.vendor.audiohal.p2w_dump_on=0
+persist.vendor.audiohal.pcm_mixer_dump_on=0
+vendor.usbsph.dl.pcm.dump=0
+vendor.usbsph.ul.pcm.dump=0
+vendor.usbsph.srcaws.pcm.dump=0
+vendor.streamout.pcm.dump=0
+vendor.streamin.pcm.dump=0
 
 # APK Verity
 ro.apk_verity.mode=2
@@ -75,7 +81,6 @@ vendor.connsys.driver.ready=no
 
 # Camera
 camera.disable_zsl_mode=1
-ro.camerax.extensions.enabled=true
 ro.vendor.camera.directfdyuv.support=1
 ro.vendor.camera3.zsl.project=400
 ro.vendor.camera.insensorzoom.support=0
@@ -105,6 +110,9 @@ vendor.camera.mdp.dre.enable=1
 vendor.mtk.camera.app.fd.video=1
 ro.vendor.camera3.zsl.default=260
 
+# Charger
+persist.vendor.accelerate.charge=true
+
 # ConsumerIR
 ro.hardware.consumerir=common
 
@@ -124,28 +132,26 @@ ro.vendor.mtk_dre30_support=1
 ro.vendor.mtk_sdr_adaptive_support=0
 ro.vendor.mtk_svp_on_mtee_support=1
 
-# Dolby
-ro.vendor.audio.device.dbcom=dolby_common
-ro.vendor.dolby.dax.version=DAX3_3.6.0.12_r1
-ro.vendor.audio.dolby.dax.support=true
-
 # DRM
 drm.service.enabled=true
 ro.netflix.bsp_rev=MTK6899-37606-1
 ro.vendor.mtk_widevine_drm_l3_support=1
+
+# FRP
+ro.frp.pst=/dev/block/by-name/frp
 
 # GNSS
 ro.vendor.mtk_log_hide_gps=1
 ro.vendor.gps.chrdev=gps_drv_dl_v051
 
 # Fingerprint
+persist.vendor.sys.fp.expolevel=0x88
 persist.vendor.fingerprint.type=udfps_optical
-persist.vendor.fingerprint.sensor_location=610|2442|114
+persist.vendor.fingerprint.sensor_location=610|2437|108
 ro.vendor.sensors.xiaomi.udfps=true
 
 # Graphics
 debug.graphics.game_default_frame_rate.disabled=true
-persist.sys.activity_anim_perf_override=false
 ro.hardware.egl=meow
 ro.hardware.gralloc=common
 ro.hardware.hwcomposer=mtk_common
@@ -376,22 +382,26 @@ ro.vendor.mtk.sensor.support=yes
 ro.vendor.sensors.xiaomi.udfps=true
 
 # Surface Flinger
-debug.sf.disable_backpressure=1
-debug.sf.early.app.duration=20000000
-debug.sf.earlyGl.app.duration=20000000
-debug.sf.earlyGl.sf.duration=27600000
-debug.sf.early.sf.duration=27600000
+debug.sf.disable_client_composition_cache=0
+debug.sf.disable_backpressure=0
+debug.sf.early.app.duration=16600000
+debug.sf.earlyGl.app.duration=16600000
+debug.sf.earlyGl.sf.duration=16600000
+debug.sf.early.sf.duration=16600000
 debug.sf.enable_gl_backpressure=0
+debug.sf.enable_adpf_cpu_hint=true
 debug.sf.enable_hwc_vds=0
+debug.sf.enable_transaction_tracing=false
+debug.sf.frame_rate_multiple_threshold=120
 debug.sf.hwc.min.duration=2000000
-debug.sf.late.app.duration=20000000
-debug.sf.late.sf.duration=15600000
+debug.sf.late.app.duration=16600000
+debug.sf.late.sf.duration=10500000
 debug.sf.set_binder_thread_rt=1
 debug.sf.use_phase_offsets_as_durations=1
 ro.surface_flinger.enable_sdr_dimming=true
-persist.sys.sf.color_mode=0
-persist.sys.sf.color_saturation=1.1
-persist.sys.sf.native_mode=0
+persist.sys.sf.color_saturation=1.0
+persist.sys.sf.native_mode=257
+ro.surface_flinger.clear_slots_with_set_layer_buffer=false
 ro.surface_flinger.force_hwc_copy_for_virtual_displays=true
 ro.surface_flinger.has_HDR_display=true
 ro.surface_flinger.has_wide_color_display=true
@@ -399,10 +409,12 @@ ro.surface_flinger.ignore_hdr_camera_layers=true
 ro.surface_flinger.max_frame_buffer_acquired_buffers=4
 ro.surface_flinger.primary_display_orientation=ORIENTATION_0
 ro.surface_flinger.protected_contents=true
+ro.surface_flinger.set_idle_timer_ms=80
 ro.surface_flinger.supports_background_blur=1
 ro.surface_flinger.uclamp.min=328
 ro.surface_flinger.use_color_management=true
 ro.surface_flinger.wcg_composition_dataspace=143261696
+debug.sf.enable_egl_image_tracker=0
 
 # TEE
 ro.vendor.mtk_microtrust_tee_support=1
@@ -413,9 +425,15 @@ ro.vendor.mtk_tee_gp_support=1
 ro.vendor.touchfeature.type=247
 
 # WiFi
-wifi.interface=wlan0
-wifi.supplicant_scan_interval=120
 ro.vendor.wifi.sap.concurrent.iface=ap1
 ro.vendor.wifi.sap.interface=ap0
 ro.vendor.wlan.chrdev=wmt_chrdev_wifi_connac2
 ro.vendor.wlan.gen=gen4m_6899
+
+# ZRAM writeback
+ro.zram.mark_idle_delay_mins=60
+ro.zram.first_wb_delay_mins=180
+ro.zram.periodic_wb_delay_hours=24
+
+# Zygote
+zygote.critical_window.minute=10

@@ -1,7 +1,6 @@
 # Audio
 /dev/socket/audio_hw_socket                                                                            u:object_r:audio_socket:s0
 /dev/elliptic[0-1]                                                                                     u:object_r:sensors_device:s0
-/dev/xlog                                                                                              u:object_r:sound_device:s0
 /dev/fs16xx(/.*)?                                                                                      u:object_r:fs16xx_device:s0
 
 # Batterysecret
@@ -81,17 +80,12 @@
 # Fido
 /(odm|vendor/odm|system/vendor)/bin/fidoca_mitee                                                       u:object_r:hal_mfidoca_default_exec:s0
 
-# Dolby
-/data/vendor/dolby(/.*)?                                                  u:object_r:vendor_dolby_file:s0
-/(vendor|system/vendor)/bin/hw/vendor\.dolby\.hardware\.dms@2\.0-service  u:object_r:hal_dms_default_exec:s0
-
 # Fingerpint
+/dev/socket/fpsensor_socket    u:object_r:fpsensor_socket:s0
 /dev/xiaomi-fp u:object_r:fingerprint_device:s0
-/data/vendor/jiiov(/.*)? u:object_r:fingerprint_vendor_data_file:s0
 /data/vendor/fpdump(/.*)? u:object_r:fingerprint_vendor_data_file:s0
 /data/vendor/gf_data(/.*)? u:object_r:fingerprint_vendor_data_file:s0
 /data/vendor/goodix(/.*)? u:object_r:fingerprint_vendor_data_file:s0
-/mnt/vendor/persist/jiiov(/.*)? u:object_r:fingerprint_vendor_data_file:s0
 /mnt/vendor/persist/goodix(/.*)? u:object_r:fingerprint_vendor_data_file:s0
 /(vendor|system/vendor)/bin/hw/android\.hardware\.biometrics\.fingerprint-service\.xiaomi              u:object_r:hal_fingerprint_default_exec:s0
 
@@ -101,9 +95,6 @@
 # Keymint
 /(vendor|system/vendor)/bin/hw/android.hardware.identity-service.mitee@5.0                             u:object_r:hal_identity_default_exec:s0
 /(vendor|system/vendor)/bin/hw/android.hardware.security.keymint@3.0-service.mitee                     u:object_r:hal_keymint_default_exec:s0
-
-# Media
-/(odm|vendor/odm|system/vendor)/bin/hw/vendor.xiaomi.hardware.mediaeventgatherservice-service           u:object_r:hal_mediaeventgatherservice_default_exec:s0
 
 # Mlipay
 /(odm|vendor/odm|system/vendor)/bin/mlipayd_mitee                                                      u:object_r:hal_mlipay_default_exec:s0
@@ -145,8 +136,8 @@
 # Vibrator
 /(vendor|system/vendor)/bin/hw/vendor\.qti\.hardware\.vibrator\.service\.rodin u:object_r:hal_vibrator_default_exec:s0
 
-# WiFi
-/(vendor|system/vendor)/bin/hw/android\.hardware\.wifi-service-lazy-mediatek           u:object_r:hal_wifi_default_exec:s0
-
 # Touchboost
 /(vendor|system/vendor)/bin/touch_boost      u:object_r:touch_boost_exec:s0
+
+# Process and system statistics files
+/proc/stat                                                                                                                                                u:object_r:proc_stat:s0

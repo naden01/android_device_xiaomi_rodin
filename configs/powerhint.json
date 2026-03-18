@@ -21,15 +21,6 @@
       ]
     },
     {
-      "Name": "RestrictedCpuset",
-      "Path": "/dev/cpuset/restricted/cpus",
-      "Values": [
-        "0-3",
-        "0-7"
-      ],
-      "ResetOnInit": true
-    },
-    {
       "Name": "GpuPwrLevel",
       "Path": "/proc/gpufreqv2/fix_target_opp_index",
       "Values": [
@@ -342,10 +333,23 @@
       "HoldFd": true
     },
     {
+      "Name": "UclampFGMin",
+      "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
+      "Values": [
+        "0",
+        "15",
+        "30"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "UclampTAMin",
       "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
       "Values": [
         "0",
+        "30",
+        "40",
         "100"
       ],
       "DefaultIndex": 0,
@@ -423,7 +427,7 @@
       "Type": "Property"
     }
   ],
-  "Actions": [
+"Actions": [
     {
       "PowerHint": "INTERACTION",
       "Node": "CPULittleClusterMinFreq",
@@ -435,6 +439,24 @@
       "Node": "CPUMidClusterMinFreq",
       "Duration": 1000,
       "Value": "1300000"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "UclampFGMin",
+      "Duration": 58,
+      "Value": "15"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "UclampTAMin",
+      "Duration": 58,
+      "Value": "40"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "CPUBigClusterMinFreq",
+      "Duration": 2000,
+      "Value": "9999999"
     },
     {
       "PowerHint": "LAUNCH",
@@ -459,13 +481,25 @@
       "Node": "UclampTAMin",
       "Duration": 2000,
       "Value": "100"
-    }, 
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "GPUBlockBoost",
+      "Duration": 5000,
+      "Value": "101"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "GpuPwrLevel",
+      "Duration": 5000,
+      "Value": "6"
+    },
     {
       "PowerHint": "FIXED_PERFORMANCE",
       "Node": "GpuPwrLevel",
       "Duration": 0,
       "Value": "0"
-    },   
+    },
     {
       "PowerHint": "FIXED_PERFORMANCE",
       "Node": "CPUBigClusterMaxFreq",
@@ -515,16 +549,22 @@
       "Value": "9999999999"
     },
     {
-      "PowerHint": "LAUNCH",
-      "Node": "GPUBlockBoost",
-      "Duration": 5000,
-      "Value": "101"
-    },
-    {
       "PowerHint": "CAMERA_LAUNCH",
       "Node": "CAMUClampBoost",
       "Duration": 1000,
       "Value": "100"
+    },
+    {
+      "PowerHint": "CAMERA_LAUNCH",
+      "Node": "MemFreq",
+      "Duration": 1000,
+      "Value": "9999999999"
+    },
+    {
+      "PowerHint": "CAMERA_LAUNCH",
+      "Node": "CPUBigClusterMinFreq",
+      "Duration": 1000,
+      "Value": "2200000"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
@@ -536,7 +576,7 @@
       "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "GpuPwrLevel",
       "Duration": 0,
-      "Value": "0"
+      "Value": "10"
     },
     {
       "PowerHint": "EXPENSIVE_RENDERING",
@@ -548,7 +588,30 @@
       "PowerHint": "EXPENSIVE_RENDERING",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 0,
-      "Value": "9999999"
+      "Value": "2200000"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "CPUMidClusterMinFreq",
+      "Duration": 0,
+      "Value": "2000000"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampFGMin",
+      "Duration": 0,
+      "Value": "30"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Node": "UclampTAMin",
+      "Duration": 0,
+      "Value": "30"
+    },
+    {
+      "PowerHint": "EXPENSIVE_RENDERING",
+      "Type": "EndHint",
+      "Value": "INTERACTION"
     },
     {
       "PowerHint": "ML_ACC",
@@ -571,12 +634,6 @@
     {
       "PowerHint": "DISPLAY_INACTIVE",
       "Node": "TopAppCpuset",
-      "Duration": 0,
-      "Value": "0-3"
-    },
-    {
-      "PowerHint": "DISPLAY_INACTIVE",
-      "Node": "RestrictedCpuset",
       "Duration": 0,
       "Value": "0-3"
     },
@@ -613,25 +670,73 @@
       "PowerHint": "GAME",
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
-      "Value": "2000000"
+      "Value": "1500000"
     },
     {
       "PowerHint": "GAME",
       "Node": "CPUMidClusterMinFreq",
       "Duration": 0,
-      "Value": "3000000"
+      "Value": "2000000"
     },
     {
       "PowerHint": "GAME",
       "Node": "CPUBigClusterMinFreq",
       "Duration": 0,
-      "Value": "3100000"
+      "Value": "2200000"
     },
     {
       "PowerHint": "GAME",
       "Node": "GpuPwrLevel",
       "Duration": 0,
       "Value": "3"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPUBigClusterMinFreq",
+      "Duration": 2000,
+      "Value": "2200000"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPUMidClusterMinFreq",
+      "Duration": 2000,
+      "Value": "2000000"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "CPULittleClusterMinFreq",
+      "Duration": 2000,
+      "Value": "1500000"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "MemFreq",
+      "Duration": 2000,
+      "Value": "9999999999"
+    },
+    {
+      "PowerHint": "DISPLAY_CHANGE",
+      "Node": "GpuPwrLevel",
+      "Duration": 2000,
+      "Value": "12"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPUBigClusterMaxFreq",
+      "Duration": 0,
+      "Value": "2200000"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "CPUMidClusterMaxFreq",
+      "Duration": 0,
+      "Value": "2000000"
+    },
+    {
+      "PowerHint": "LOW_POWER",
+      "Node": "GpuPwrLevel",
+      "Duration": 0,
+      "Value": "20"
     }
   ]
 }

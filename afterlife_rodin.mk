@@ -31,7 +31,6 @@ TARGET_FACE_UNLOCK_SUPPORTED := true
 
 # Gapps
 AFTERLIFE_GAPPS := true
-GAPPS_CORE := true
 
 # Inherit from rodin device
 $(call inherit-product, device/xiaomi/rodin/device.mk)

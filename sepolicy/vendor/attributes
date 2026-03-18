@@ -21,11 +21,6 @@ attribute hal_mtdservice;
 attribute hal_mtdservice_client;
 attribute hal_mtdservice_server;
 
-# Media
-attribute hal_mediaeventgatherservice;
-attribute hal_mediaeventgatherservice_client;
-attribute hal_mediaeventgatherservice_server;
-
 # Fido
 attribute hal_mfidoca;
 attribute hal_mfidoca_client;
@@ -35,3 +30,8 @@ attribute hal_mfidoca_server;
 attribute vendor_hal_citsensorservice_xiaomi;
 attribute vendor_hal_citsensorservice_xiaomi_client;
 attribute vendor_hal_citsensorservice_xiaomi_server;
+
+# TouchFeature
+attribute hal_touchfeature_xiaomi;
+attribute hal_touchfeature_xiaomi_client;
+attribute hal_touchfeature_xiaomi_server;

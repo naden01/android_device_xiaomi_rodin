@@ -10,7 +10,7 @@ IGNORE_PREFER32_ON_DEVICE := true
 
 # Architecture
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-2a-dotprod
+TARGET_ARCH_VARIANT := armv9-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_VARIANT := cortex-a76
 
@@ -31,12 +31,16 @@ AB_OTA_PARTITIONS += \
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
 
+# Bootconfig
+BOARD_BOOTCONFIG += \
+    androidboot.serialconsole=0
+
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := rodin
 TARGET_NO_BOOTLOADER := true
 
 # Display
-TARGET_SCREEN_DENSITY := 520
+TARGET_SCREEN_DENSITY := 490
 
 # DTB/DTBO
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
@@ -127,7 +131,9 @@ TARGET_COPY_OUT_VENDOR_DLKM := vendor_dlkm
 TARGET_BOARD_PLATFORM := mt6899
 
 # Properties
+TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
+TARGET_PRODUCT_PROP += $(DEVICE_PATH)/product.prop
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # Recovery
@@ -150,6 +156,11 @@ AB_OTA_PARTITIONS += \
     vendor_boot
 
 BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE += rcupdate.rcu_expedited=1 rcu_nocbs=all rcutree.enable_rcu_lazy
+BOARD_KERNEL_CMDLINE += log_buf_len=1024K
+BOARD_KERNEL_CMDLINE += sysctl.kernel.sched_pelt_multiplier=4
+BOARD_KERNEL_CMDLINE += cgroup.memory=nokmem
+BOARD_KERNEL_CMDLINE += cgroup_disable=memory
 
 BOARD_BOOT_HEADER_VERSION := 4
 
@@ -176,8 +187,6 @@ BOARD_VENDOR_BOOTIMAGE_PARTITION_SIZE := 67108864
 # SELinux
 include device/mediatek/sepolicy_vndr/SEPolicy.mk
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 
 # VINTF
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
@@ -187,18 +196,15 @@ DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
     hardware/xiaomi/vintf/xiaomi_framework_compatibility_matrix.xml \
     hardware/mediatek/vintf/mediatek_framework_compatibility_matrix.xml
 
-ODM_MANIFEST_FILES   := \
-        $(DEVICE_PATH)/vintf/manifest_dsds.xml \
-        $(DEVICE_PATH)/vintf/manifest_qsqs.xml \
-        $(DEVICE_PATH)/vintf/manifest_ss.xml \
-        $(DEVICE_PATH)/vintf/manifest_tsts.xml
-
 # WiFi
+BOARD_WLAN_DEVICE := MediaTek
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_mt66xx
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_mt66xx
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_mt66xx
+BOARD_HOSTAPD_DRIVER := $(BOARD_WPA_SUPPLICANT_DRIVER)
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := $(BOARD_HOSTAPD_PRIVATE_LIB)
 WIFI_FEATURE_HOSTAPD_11AX := true
 WIFI_FEATURE_SUPPLICANT_11AX := true
 WIFI_DRIVER_FW_PATH_PARAM := "/dev/wmtWifi"
@@ -206,7 +212,7 @@ WIFI_DRIVER_FW_PATH_STA := "STA"
 WIFI_DRIVER_FW_PATH_AP := "AP"
 WIFI_DRIVER_FW_PATH_P2P := "P2P"
 CONFIG_IEEE80211AX := true
-WIFI_DRIVER_STATE_CTRL_PARAM := "/dev/wmtWifi"
+WIFI_DRIVER_STATE_CTRL_PARAM := $(WIFI_DRIVER_FW_PATH_PARAM)
 WIFI_DRIVER_STATE_ON := "1"
 WIFI_DRIVER_STATE_OFF := "0"
 WIFI_HAL_INTERFACE_COMBINATIONS := {{{STA}, 2}}

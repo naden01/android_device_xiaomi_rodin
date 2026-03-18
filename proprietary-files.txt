@@ -15,14 +15,13 @@ vendor/lib64/APUWareUtilsAidlServer.so
 vendor/lib64/libapu_mdw.so
 vendor/lib64/libapu_mdw_batch.so
 vendor/lib64/libapusys.so
-vendor/lib64/vendor.mediatek.hardware.apuware.apusys-V5-ndk.so
-vendor/lib64/vendor.mediatek.hardware.apuware.utils-V1-ndk.so
-vendor/lib64/vendor.mediatek.hardware.apuware.utils@2.0.so
+vendor/lib64/vendor.mediatek.hardware.apuware.apusys-V5-ndk.so;MODULE_SUFFIX=-vendor
+vendor/lib64/vendor.mediatek.hardware.apuware.utils-V1-ndk.so;MODULE_SUFFIX=-vendor
+vendor/lib64/vendor.mediatek.hardware.apuware.utils@2.0.so;MODULE_SUFFIX=-vendor
 
 # Audio
 odm/lib64/libbarrage.so
 vendor/lib64/hw/audio.primary.mediatek.so;SYMLINK=vendor/lib64/hw/audio.primary.mt6899.so
-vendor/lib64/hw/audio.r_submix.mediatek.so;SYMLINK=vendor/lib64/hw/audio.r_submix.mt6899.so
 vendor/lib64/hw/sound_trigger.primary.default.so
 vendor/lib64/libMtkSpeechEnh.so
 vendor/lib64/lib_iir.so
@@ -73,23 +72,8 @@ vendor/lib64/libvow_ap_test_vaca_ha.so
 vendor/lib64/libvow_ap_test_vaca_hh.so
 vendor/lib64/libvow_ap_test_vaca_nn.so
 vendor/lib64/libvow_comp_test.so
-vendor/lib64/libxlog.so
 vendor/lib64/vendor.mediatek.hardware.audio@6.1.so
 vendor/lib64/vendor.mediatek.hardware.bluetooth.audio-V1-ndk.so
-
-# Audio (mediaeventgather)
-odm/bin/hw/vendor.xiaomi.hardware.mediaeventgatherservice-service
-odm/etc/init/vendor.xiaomi.hardware.mediaeventgatherservice.rc
-odm/etc/vintf/manifest/vendor.xiaomi.hardware.mediaeventgatherservice.xml
-odm/lib64/vendor.xiaomi.hardware.mediaeventgatherservice-V1-ndk.so
-
-# Audio (misound)
-vendor/lib64/libmis6.so
-vendor/lib64/libmisoundcrossfade.so
-vendor/lib64/libmisoundfpsop.so
-vendor/lib64/libmisoundfx_mtk_aidl_ext.so
-vendor/lib64/libmisoundparser.so
-vendor/lib64/libmisoundsa.so
 
 # Audio Configs
 vendor/etc/audio_param/AudioParamOptions_mgvi.xml
@@ -237,6 +221,7 @@ vendor/bin/batterysecret
 
 # Bluetooth (Driver)
 vendor/etc/init/init.bt_drv.rc
+vendor/firmware/BT_FW.cfg
 vendor/lib64/libbluetooth_mtk.so
 vendor/lib64/libbt-vendor.so
 
@@ -339,7 +324,7 @@ odm/lib64/camera/zsl/com.xiaomi.zsl.dsac.so
 odm/lib64/camera/zsl/com.xiaomi.zsl.hdr.so
 odm/lib64/libHISCppAlgos.so
 odm/lib64/libMiEmojiEffect.so
-odm/lib64/libMiVideoFilter.so
+odm/lib64/libMiVideoFilter.so;MODULE_SUFFIX=-odm
 odm/lib64/libalCFR.so
 odm/lib64/libanc_dc_base.so
 odm/lib64/libanc_single_bokeh.so
@@ -372,6 +357,7 @@ odm/lib64/libmpbase.so
 odm/lib64/libportrait_repair_apu.so
 odm/lib64/librfs_warp.so
 odm/lib64/libwa_widelens_undistort.so
+system_ext/lib64/libMiVideoFilter.so
 vendor/bin/crossbuild/DataSet/SQLiteModule/db/port_select.db;MAKE_COPY_RULE_ONLY
 vendor/bin/hw/vendor.xiaomi.hardware.dynamiccameraserver
 vendor/etc/vintf/manifest/manifest_aovservice.xml
@@ -891,11 +877,6 @@ odm/lib64/libarcsoft_turbo_fusion_raw_super_night.so
 odm/lib64/libarcsoft_turbo_hdr_detection.so
 odm/lib64/libarcsoft_turbo_sr_detection.so
 
-# Camera Extensions
-system_ext/framework/camerax-vendor-extensions.jar:system/framework/camerax-vendor-extensions.jar;BOOT_JAR
-vendor/etc/permissions/camera_extensions.xml
-vendor/framework/androidx.camera.extensions.impl.jar
-
 # Camera-bin
 vendor/bin/camera_cal
 vendor/bin/cameratest
@@ -903,87 +884,6 @@ vendor/bin/hw/mt6899/camerahalserver;SYMLINK=vendor/bin/hw/camerahalserver
 vendor/etc/init/camerahalserver.rc
 
 # Camera-configs
-odm/etc/camera/102_SummerDay.png
-odm/etc/camera/103_Fantasy.png
-odm/etc/camera/104_Meet.png
-odm/etc/camera/105_WindSing.png
-odm/etc/camera/107_Central.png
-odm/etc/camera/108_NorthernEurope.png
-odm/etc/camera/109_Rome.png
-odm/etc/camera/110_BlackGold.png
-odm/etc/camera/112_CyberPunk.png
-odm/etc/camera/113_BlackIce.png
-odm/etc/camera/121_Bleach.png
-odm/etc/camera/122_Thriller.png
-odm/etc/camera/123_TealOrange.png
-odm/etc/camera/124_JapaneseStyle.png
-odm/etc/camera/125_Latin.png
-odm/etc/camera/126_Fantasy2.png
-odm/etc/camera/127_Creamy.png
-odm/etc/camera/128_Sepia.png
-odm/etc/camera/129_Vivid.png
-odm/etc/camera/130_Natural.png
-odm/etc/camera/131_Monochrome.png
-odm/etc/camera/132_MonochromeHighContrast.png
-odm/etc/camera/133_MonochromeBrown.png
-odm/etc/camera/134_MonochromeBlue.png
-odm/etc/camera/135_Classical.png
-odm/etc/camera/136_Filene.png
-odm/etc/camera/137_GreenNight.png
-odm/etc/camera/138_LiteratureAndArt.png
-odm/etc/camera/139_OrangeHoney.png
-odm/etc/camera/140_Romance.png
-odm/etc/camera/141_FR500.png
-odm/etc/camera/142_FE250.png
-odm/etc/camera/143_RedLantern.png
-odm/etc/camera/144_RedHero.png
-odm/etc/camera/145_TactileBlackWhite.png
-odm/etc/camera/146_TactileGreen.png
-odm/etc/camera/147_Neutral.png
-odm/etc/camera/148_Mild.png
-odm/etc/camera/149_LilyWhite.png
-odm/etc/camera/150_Bright.png
-odm/etc/camera/151_Fresh.png
-odm/etc/camera/152_Limpid.png
-odm/etc/camera/153_KC64.png
-odm/etc/camera/154_V250.png
-odm/etc/camera/155_H400.png
-odm/etc/camera/156_ColdWhite.png
-odm/etc/camera/157_Native.png
-odm/etc/camera/158_BWClassical.png
-odm/etc/camera/159_Flowers.png
-odm/etc/camera/160_vivid.png
-odm/etc/camera/161_wind.png
-odm/etc/camera/162_nature.png
-odm/etc/camera/163_free.png
-odm/etc/camera/164_fc400.png
-odm/etc/camera/165_c_50d.png
-odm/etc/camera/166_revert.png
-odm/etc/camera/AIGesture/buling_1s.png
-odm/etc/camera/AIGesture/buling_2s.png
-odm/etc/camera/AIGesture/buling_3s.png
-odm/etc/camera/AIGesture/buling_4s.png
-odm/etc/camera/AIGesture/buling_5s.png
-odm/etc/camera/AIGesture/circle_1.png
-odm/etc/camera/AIGesture/circle_2.png
-odm/etc/camera/AIGesture/circle_3.png
-odm/etc/camera/AIGesture/circle_4.png
-odm/etc/camera/AIGesture/circle_5.png
-odm/etc/camera/AIGesture/circle_6.png
-odm/etc/camera/AIGesture/clip_1.png
-odm/etc/camera/AIGesture/clip_2.png
-odm/etc/camera/AIGesture/clip_3.png
-odm/etc/camera/AIGesture/clip_4.png
-odm/etc/camera/AIGesture/clip_5.png
-odm/etc/camera/AIGesture/clip_6.png
-odm/etc/camera/AIGesture/clip_7.png
-odm/etc/camera/AIGesture/heart_1s.png
-odm/etc/camera/AIGesture/heart_2s.png
-odm/etc/camera/AIGesture/heart_3s.png
-odm/etc/camera/AIGesture/heart_4s.png
-odm/etc/camera/AIGesture/heart_5s.png
-odm/etc/camera/AIGesture/heart_6s.png
-odm/etc/camera/AIGesture/thumbup_3s.png
 odm/etc/camera/CFR_para_UW.bin
 odm/etc/camera/CameraImageSize.bin
 odm/etc/camera/CameraPlatformInfo.bin
@@ -1132,111 +1032,6 @@ odm/etc/camera/xiaomi/thirdpartysnapshotjpegr.json
 odm/etc/camera/xiaomi/tprearsimplevideo.json
 odm/etc/camera/xiaomi/tpwechatsimplevideo.json
 odm/etc/camera/xiaomi/uwsuperlowlightshot.json
-odm/etc/camera/xiaomi/watermark/MiSansVF-Simple-Bold.ttf
-odm/etc/camera/xiaomi/watermark/MiSansVF.ttf
-odm/etc/camera/xiaomi/watermark/Roboto-Bold.ttf
-odm/etc/camera/xiaomi/watermark/Roboto.ttf
-odm/etc/camera/xiaomi/watermark/ic_cv_film_logo.png
-odm/etc/camera/xiaomi/watermark/ic_cv_film_logo_white.png
-odm/etc/camera/xiaomi/watermark/ic_cv_logo.png
-odm/etc/camera/xiaomi/watermark/ic_cv_logo_p3.png
-odm/etc/camera/xiaomi/watermark/ic_cv_poco_logo.png
-odm/etc/camera/xiaomi/watermark/ic_cv_poco_logo_white.png
-odm/etc/camera/xiaomi/watermark/ic_cv_redmi_logo.png
-odm/etc/camera/xiaomi/watermark/ic_cv_redmi_logo_white.png
-odm/etc/camera/xiaomi/watermark/ic_cv_xiaomi_logo.png
-odm/etc/camera/xiaomi/watermark/ic_cv_xiaomi_logo_white.png
-odm/etc/camera/xiaomi/watermark/ic_wp_0100_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_0101.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_0101_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_0214.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_0601.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_0815_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_1208_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_1225.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_agra_fort.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_amber_fort.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_beauty_charm.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_beijing.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_bluesky.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_buddha.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_cat.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_cat_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_chengdu.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_chongqing.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_cloudy.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_coconut_tree.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_coffee.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_coffee_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_cow.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_curry.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_delicacy.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_diwali.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_dog.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_dog_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_dussehra.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_elephant_god.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_fleshiness.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_flower.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_gateway_delhi.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_gateway_mumbai.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_grassplot.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_great_wall.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_gu_lang_island.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_guangzhou.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_hang_ya_cave.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_hangzhou.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_happy_time.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_holi.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_huoguo.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_kids.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_kids_c.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_leafs.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_monkey.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_motorcycle.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_mount_huang.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_namaste.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_nanjing.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_nightscape.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_overcast.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_party_time.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_plants.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_rakhi.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_red_fort.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_republic_day.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_shanghai.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_sunrise_sunset.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_airplane.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_black_cat.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_branch_bird.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_cable_car.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_climb.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_flying_bird.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_leaf.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_1.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_2.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_3.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_4.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_5.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_7.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_text_8.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_super_moon_window.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_suzhou.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_suzhou_gardens.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_taj_mahal.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_temple_of_heaven.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_the_palace_museum.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_the_potala_palace.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_the_summer_palace.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_the_terracotta_army.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_tianjin.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_tutuk.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_underwater.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_victoria_harbor.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_west_lake.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_wuhan.webp
-odm/etc/camera/xiaomi/watermark/ic_wp_zhang_jia_jie.webp
-odm/etc/camera/xiaomi/watermark/noise_logo.png
 odm/etc/camera/xiaomiSceneDetection.xml
 vendor/etc/camera/af_class_all.dla
 vendor/etc/camera/af_class_human.dla
@@ -1385,24 +1180,12 @@ odm/etc/vintf/manifest/manifest_vendor.xiaomi.hardware.mfidoca.xml
 odm/lib64/libmfido_mitee.so
 vendor/lib64/vendor.xiaomi.hardware.mfidoca-V1-ndk.so
 
-# Dolby - from tanzanite OS2.0.207.0.VOGEUXM
-vendor/bin/hw/vendor.dolby.hardware.dms@2.0-service|f456fd256d6adc69dc15cbfe2bba88fd7955f0f1
-vendor/etc/dolby/dax-default.xml|3f6b68bdc3421d85ec20e44822840659498d63fc
-vendor/etc/init/vendor.dolby.hardware.dms@2.0-service.rc|29296ebfe89b2697fec573be73cc3757fd97bed6
-vendor/etc/vintf/manifest/manifest_vendor.dolby.hardware.dms.xml|c8095f649de19b80271fb429b4b6b439297a0678
-vendor/lib64/soundfx/libswdap.so|02a18b9e31988a2b00ae04b8c6a8f156fc5627f8
-vendor/lib64/libdapparamstorage.so|82c8a048c3c1efebb6e9a8bde1b5dab0a21a44f0
-vendor/lib64/libdeccfg.so|7e489f73c8edf514ec2ffd7a7cc4aae5dc95632c
-vendor/lib64/libdlbdsservice.so|c5aac3610291b22906fb3089ce1e0b80ae94a6f1|e3a7973b4cf36ce98998ecb4cb7a049d60de32e5
-vendor/lib64/vendor.dolby.hardware.dms@2.0-impl.so|d0cf6b19fdcdbb1015a68ef90e3e32d40cf7253e
-vendor/lib64/vendor.dolby.hardware.dms@2.0.so|c97a8e87354a36f7fbacd783d403a8e8a89e5c38
-
 # Fingerprint
 odm/app/JVFactoryTest/JVFactoryTest.apk
 odm/app/goodix_sz_rodin/goodix_sz_rodin.apk
-odm/lib64/hw/fingerprint.jiiov.so:odm/lib64/hw/fingerprint.jiiov.default.so;FIX_SONAME
-odm/lib64/hw/fingerprint.goodix_fod.so:odm/lib64/hw/fingerprint.goodix_fod.default.so;FIX_SONAME
 odm/lib64/anc.hal.so
+odm/lib64/hw/fingerprint.goodix_fod.so:odm/lib64/hw/fingerprint.goodix_fod.default.so;FIX_SONAME
+odm/lib64/hw/fingerprint.jiiov.so:odm/lib64/hw/fingerprint.jiiov.default.so;FIX_SONAME
 odm/lib64/libgf_hal.so
 vendor/lib64/vendor.xiaomi.hardware.fx.tunnel-V1-ndk.so
 
@@ -1510,12 +1293,6 @@ vendor/firmware/mt6632_fm_v1_patch.bin
 vendor/firmware/mt6635_fm_v1_coeff.bin
 vendor/firmware/mt6635_fm_v1_patch.bin
 vendor/firmware/remoteproc_scp
-vendor/firmware/soc7_0_ram_bt_1_1_hdr.bin
-vendor/firmware/soc7_0_ram_bt_1a_1_hdr.bin
-vendor/firmware/soc7_0_ram_bt_1b_1_hdr.bin
-vendor/firmware/soc7_0_ram_mcu_1_1_hdr.bin
-vendor/firmware/soc7_0_ram_mcu_1a_1_hdr.bin
-vendor/firmware/soc7_0_ram_mcu_1b_1_hdr.bin
 vendor/firmware/soc_fm_v1_coeff.bin
 vendor/firmware/soc_fm_v1_patch.bin
 vendor/firmware/st_fts_L11.ftb
@@ -1589,9 +1366,8 @@ vendor/etc/gralloc/dpu.xml
 vendor/etc/gralloc/dpu_aeu.xml
 vendor/etc/gralloc/gpu.xml
 vendor/etc/gralloc/vpu.xml
-vendor/etc/init/arm.mali.platform-mediatek.rc
-vendor/etc/init/android.hardware.graphics.allocator-V2-service-mediatek.rc
 vendor/etc/init/android.hardware.graphics.composer@3.3-service.rc
+vendor/etc/init/arm.mali.platform-mediatek.rc
 vendor/etc/init/gpuserv-default.rc
 vendor/etc/mali_platform.config
 vendor/etc/vintf/manifest/arm.mali.platform-mediatek.xml
@@ -1631,6 +1407,12 @@ vendor/lib64/mt6899/libdpframework.so;SYMLINK=vendor/lib64/libdpframework.so
 vendor/lib64/vendor.mediatek.hardware.composer_ext-V1-ndk.so
 vendor/lib64/vendor.mediatek.hardware.composer_ext@1.0.so
 
+# HotwordEnrollment
+product/priv-app/HotwordEnrollmentYGoogleRISCV_WIDEBAND/HotwordEnrollmentYGoogleRISCV_WIDEBAND.apk
+product/priv-app/HotwordEnrollmentXGoogleRISCV_WIDEBAND/HotwordEnrollmentXGoogleRISCV_WIDEBAND.apk
+system_ext/etc/permissions/com.android.hotwordenrollment.common.util.xml
+system_ext/framework/com.android.hotwordenrollment.common.util.jar
+
 # IMS
 vendor/bin/hw/vtservice_aidl
 vendor/etc/init/init.vtservice_aidl.rc
@@ -1667,12 +1449,7 @@ vendor/lib64/libvcodec_oal.so
 vendor/lib64/libvcodecdrv_header_stub.so
 
 # Media (Codec2)
-vendor/bin/hw/android.hardware.media.c2-mediatek-64b
 vendor/etc/VideoLog_dynamic.ds
-vendor/etc/init/android.hardware.media.c2-mediatek-64b.rc
-vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-extended-seccomp-policy
-vendor/etc/seccomp_policy/android.hardware.media.c2@1.2-mediatek-seccomp-policy
-vendor/etc/vintf/manifest/manifest_media_c2_default.xml
 vendor/lib64/libcodec2_fsr.so
 vendor/lib64/libcodec2_mtk_c2store.so
 vendor/lib64/libcodec2_mtk_vdec.so
@@ -1715,6 +1492,53 @@ vendor/lib64/libwvkeybox.so
 vendor/lib64/vendor.xiaomi.hardware.aidl.mtdservice-V1-ndk.so
 
 # Neural Networks
+system/etc/public.libraries-mtk.txt
+system_ext/lib64/libapuwareapusys.mtk.so
+system_ext/lib64/libapuwareapusys_v2.mtk.so
+system_ext/lib64/libapuwarehmp.mtk.so
+system_ext/lib64/libapuwareutils.mtk.so
+system_ext/lib64/libapuwareutils_v2.mtk.so
+system_ext/lib64/libapuwarexrp.mtk.so
+system_ext/lib64/libapuwarexrp_v2.mtk.so
+system_ext/lib64/libarmnn_ndk.mtk.so
+system_ext/lib64/libcmdl_ndk.mtk.so
+system_ext/lib64/libmvpu_cic_ci_compiler.mtk.so
+system_ext/lib64/libmvpu_cic_ci_compiler_25.mtk.so
+system_ext/lib64/libmvpu_clc_14_mvpu_elf_25.mtk.so
+system_ext/lib64/libmvpu_clc_mvpu_elf.mtk.so
+system_ext/lib64/libmvpu_config.mtk.so
+system_ext/lib64/libmvpu_engine.mtk.so
+system_ext/lib64/libmvpu_engine_25.mtk.so
+system_ext/lib64/libmvpu_engine_25_pub.mtk.so
+system_ext/lib64/libmvpu_engine_pub.mtk.so
+system_ext/lib64/libmvpu_pattern.mtk.so
+system_ext/lib64/libmvpu_pattern_25.mtk.so
+system_ext/lib64/libmvpu_pattern_25_pub.mtk.so
+system_ext/lib64/libmvpu_pattern_pub.mtk.so
+system_ext/lib64/libmvpu_runtime.mtk.so
+system_ext/lib64/libmvpu_runtime_25.mtk.so
+system_ext/lib64/libmvpu_runtime_25_pub.mtk.so
+system_ext/lib64/libmvpu_runtime_builtin.mtk.so
+system_ext/lib64/libmvpu_runtime_pub.mtk.so
+system_ext/lib64/libmvpuop25_mtk_cv.mtk.so
+system_ext/lib64/libmvpuop25_mtk_nn.mtk.so
+system_ext/lib64/libmvpuop_mtk_cv.mtk.so
+system_ext/lib64/libmvpuop_mtk_nn.mtk.so
+system_ext/lib64/libneuron_graph_delegate.mtk.so
+system_ext/lib64/libneuronusdk_adapter.mtk.so
+system_ext/lib64/libnir_neon_driver_ndk.mtk.so
+system_ext/lib64/libtflite_mtk.mtk.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys-V5-ndk.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@2.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.apusys@2.1.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.hmp@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.utils-V1-ndk.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.utils@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.utils@2.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.xrp-V1-ndk.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.xrp@1.0.so
+system_ext/lib64/vendor.mediatek.hardware.apuware.xrp@2.0.so
 vendor/bin/hw/android.hardware.neuralnetworks-shim-service-mtk
 vendor/data/model/VEdynamic.dla
 vendor/data/model/mt6899_mc_1088x1920.dla
@@ -1742,12 +1566,12 @@ vendor/lib64/libimagebuffer_wrapper.so
 vendor/lib64/libion_mtk.so
 vendor/lib64/libion_ulit.so
 vendor/lib64/libneuroeara.so
-vendor/lib64/libneuron_graph_delegate.mtk.so
+vendor/lib64/libneuron_graph_delegate.mtk.so;MODULE_SUFFIX=-vendor
 vendor/lib64/libnir_neon_driver_ndk.mtk.vndk.so;FIX_SONAME
 vendor/lib64/libnpagent.so
 vendor/lib64/libnpagent_server.so
 vendor/lib64/libnputils.so
-vendor/lib64/libtflite_mtk.so
+vendor/lib64/libtflite_mtk.so;MODULE_SUFFIX=-vendor
 vendor/lib64/libtranslator_mapi_v3.0.so
 vendor/lib64/libtranslator_mdmi_v2.8.2.so
 vendor/lib64/libtranslator_utils.so
@@ -1922,7 +1746,9 @@ vendor/etc/virtual-spn-conf-by-efspn.xml
 vendor/etc/virtual-spn-conf-by-imsi.xml
 
 # Secure element
+vendor/bin/hw/android.hardware.secure_element@1.2-service-mediatek
 vendor/bin/hw/vendor.xiaomi.hardware.secure_element-service
+vendor/etc/init/android.hardware.secure_element@1.2-service-mediatek.rc
 vendor/etc/init/secure_element-service.rc
 
 # Sensors
@@ -1987,32 +1813,9 @@ odm/lib64/libtida_mitee.so
 vendor/lib64/vendor.xiaomi.hardware.aidl.tidaservice-V1-ndk.so
 
 # Thermal
-odm/etc/thermal-4k.conf
-odm/etc/thermal-arvr.conf
-odm/etc/thermal-camera.conf
-odm/etc/thermal-cclassvideo.conf
-odm/etc/thermal-cgame.conf
-odm/etc/thermal-charge.conf
-odm/etc/thermal-chg-only.conf
-odm/etc/thermal-class0.conf
-odm/etc/thermal-hp-mgame.conf
-odm/etc/thermal-hp-normal.conf
-odm/etc/thermal-huanji.conf
-odm/etc/thermal-mgame.conf
-odm/etc/thermal-navigation.conf
-odm/etc/thermal-nolimits.conf
-odm/etc/thermal-normal.conf
-odm/etc/thermal-per-class0.conf
-odm/etc/thermal-per-normal.conf
-odm/etc/thermal-per-video.conf
-odm/etc/thermal-phone.conf
-odm/etc/thermal-tgame.conf
-odm/etc/thermal-videochat.conf
-odm/etc/thermal-video.conf
-odm/etc/thermal-yuanshen.conf
 vendor/bin/mi_thermald
-vendor/etc/thermald-devices.conf
 vendor/etc/thermal-map.conf
+vendor/etc/thermald-devices.conf
 
 # Tether Offload
 vendor/bin/hw/tetheroffloadservice
@@ -2035,7 +1838,7 @@ odm/lib64/libtouchreport_hal.so
 odm/lib64/libtouchreport_sensor.so
 vendor/bin/touch_boost
 vendor/etc/init/touch_boost.rc
-vendor/lib64/vendor.xiaomi.hw.touchfeature-V1-ndk.so;MODULE_SUFFIX=-vendor
+vendor/lib64/vendor.xiaomi.hw.touchfeature-V1-ndk.so:vendor/lib64/vendor.xiaomi.hw.touchfeature-V1-ndk-prebuilt.so;FIX_SONAME
 
 # VPU
 vendor/lib64/libmvpu_cic_ci_compiler.so
@@ -2080,11 +1883,6 @@ vendor/lib64/libjpegdecoder.so:vendor/lib64/libjpegdecoder_rodin.so;FIX_SONAME
 vendor/lib64/libjpegencoder.so:vendor/lib64/libjpegencoder_rodin.so;FIX_SONAME
 vendor/lib64/libultrahdr.so:vendor/lib64/libultrahdr_rodin.so;FIX_SONAME
 
-# WiFi - hardware
-vendor/bin/hw/android.hardware.wifi-service-lazy:vendor/bin/hw/android.hardware.wifi-service-lazy-mediatek
-vendor/etc/init/android.hardware.wifi-service-lazy.rc:vendor/etc/init/android.hardware.wifi-service-lazy-mediatek.rc
-vendor/etc/vintf/manifest/android.hardware.wifi-service.xml:vendor/etc/vintf/manifest/android.hardware.wifi-service-mediatek.xml
-
 # WiFi
 vendor/bin/netdagent
 vendor/bin/wlan_assistant
@@ -2092,10 +1890,7 @@ vendor/etc/init/init.wlan_drv.rc
 vendor/etc/init/netdagent.rc
 vendor/etc/init/wlan_assistant.rc
 vendor/etc/vintf/manifest/CommandService.xml
-vendor/etc/wifi/nvram/wfnv_desc_data_soc70.bin
-vendor/etc/wifi/nvram/wfnv_desc_map_soc70.bin
 vendor/lib64/libwapi.so
-vendor/lib64/libwifi-hal.so:vendor/lib64/libwifi-hal-mtk.so;FIX_SONAME
 vendor/lib64/libwifical.so
 vendor/lib64/libwifinvram.so
 vendor/lib64/libwifinvramdata.so
