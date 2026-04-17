@@ -1,1 +1,0 @@
-allow hal_keymint_default kmsg_device:chr_file rw_file_perms;
