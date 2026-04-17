@@ -1,0 +1,32 @@
+//
+// Copyright (C) 2023 Paranoid Android
+// Copyright (C) 2017-2021 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+android_app {
+    name: "XiaomiParts",
+    certificate: "platform",
+    srcs: ["src/**/*.kt"],
+    resource_dirs: ["res"],
+    platform_apis: true,
+    privileged: true,
+    system_ext_specific: true,
+    static_libs: [
+        "org.lineageos.settings.resources",
+        "vendor.xiaomi.hardware.displayfeature_aidl-V2-java",
+        "vendor.xiaomi.hw.touchfeature-V1-java",
+    ],
+
+    required: [
+        "privapp_whitelist_com.xiaomi.settings.xml",
+    ],
+}
+
+prebuilt_etc {
+    name: "privapp_whitelist_com.xiaomi.settings.xml",
+    src: "permissions/privapp_whitelist_com.xiaomi.settings.xml",
+    sub_dir: "permissions",
+    system_ext_specific: true,
+}

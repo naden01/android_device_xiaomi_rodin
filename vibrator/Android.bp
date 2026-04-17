@@ -1,0 +1,25 @@
+cc_binary {
+    name: "vendor.qti.hardware.vibrator.service.rodin",
+    vendor: true,
+    relative_install_path: "hw",
+    init_rc: ["vendor.qti.hardware.vibrator.service.rodin.rc"],
+    vintf_fragments: [
+        "vendor.qti.hardware.vibrator.service.rodin.xml",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    srcs: [
+        "service.cpp",
+        "Vibrator.cpp",
+    ],
+    shared_libs: [
+        "libcutils",
+        "libutils",
+        "libbase",
+        "libbinder_ndk",
+        "liblog",
+        "android.hardware.vibrator-V1-ndk",
+    ],
+}
