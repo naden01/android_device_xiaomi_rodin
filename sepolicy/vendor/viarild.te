@@ -1,2 +1,0 @@
-set_prop(viarild, vendor_mtk_ril_vote_prop)
-get_prop(viarild, vendor_mtk_ril_vote_prop)
