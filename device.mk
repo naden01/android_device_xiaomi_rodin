@@ -59,6 +59,9 @@ PRODUCT_SOONG_NAMESPACES += \
 PRODUCT_VENDOR_LINKER_CONFIG_FRAGMENTS += \
     $(DEVICE_PATH)/configs/linker.config.json
 
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/configs/permissions/privapp-permissions-customaddonapps.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-customaddonapps.xml
+
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -291,13 +294,14 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/com.nxp.mifare.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/com.nxp.mifare.xml
 
 # Overlays
+$(call inherit-product, hardware/mediatek/overlay/mssi.mk)
+
 PRODUCT_PACKAGES += \
     FrameworksResOverlayRodin \
     NfcOverlayRodin \
     SettingsResOverlayRodin \
     SystemUIOverlayRodin \
-    TetheringConfigOverlay \
-    WifiOverlay
+    TetheringConfigOverlay
 
 # Parts
 PRODUCT_PACKAGES += \
@@ -378,8 +382,6 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
 # WiFi
-$(call soong_config_set_bool,wpa_supplicant_8,board_wlan_mediatek_stability,true)
-
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \

@@ -1,3 +1,11 @@
 # WiFi
-wifi.interface=wlan0
 wifi.supplicant_scan_interval=120
+wifi.tethering.interface=ap0
+wifi.direct.interface=p2p0
+ro.mediatek.wlan.wsc=1
+ro.mediatek.wlan.p2p=1
+
+# MTK Performance
+ro.mtk_perf_simple_start_win=1
+ro.mtk_perf_fast_start_win=1
+ro.mtk_perf_response_time=1
